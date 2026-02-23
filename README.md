@@ -83,12 +83,12 @@ The asset adds over 50 Attributes that:
 - Draw non serialized members in the inspector
 - And more!
 
-![EditorAttributes08](https://github.com/v0lt13/EditorAttributes/assets/83181883/5680dc39-d9c7-4f41-8ef4-10945b6817d6)
-![EditorAttributes03](https://github.com/v0lt13/EditorAttributes/assets/83181883/e015bc88-b861-41ab-a071-fb8eab64eb3c)
-![EditorAttributes04](https://github.com/user-attachments/assets/8614df33-162c-4c5f-b9fa-7a1b12b151db)
-![EditorAttributes05](https://github.com/v0lt13/EditorAttributes/assets/83181883/adb2a037-bc56-4817-9e44-450cc86ed7d6)
-![EditorAttributes06](https://github.com/v0lt13/EditorAttributes/assets/83181883/1525814a-2ba0-4719-9116-100336b3a48f)
-![EditorAttributes09](https://github.com/user-attachments/assets/ff3a1f13-3aec-42bd-98ea-c4206d85a338)
-![EditorAttributes07](https://github.com/v0lt13/EditorAttributes/assets/83181883/4588fa62-121e-4f51-945f-d83bde2d8c47)
-![EditorAttributes02](https://github.com/v0lt13/EditorAttributes/assets/83181883/57792a16-3f1f-42f1-ae46-50a443a4a78e)
-![ComplexInspector](https://github.com/v0lt13/EditorAttributes/assets/83181883/d25d867d-ba81-4f46-b1e3-e9a5c5c9ba3a)
+<img width="1515" height="1059" alt="EditorAttributes08" src="https://github.com/user-attachments/assets/3e24e43c-b2ef-4e19-92f0-0ec714c4cab9" />
+<img width="1515" height="1059" alt="EditorAttributes03" src="https://github.com/user-attachments/assets/1065b0f1-74ba-4e92-99cc-d4f2098efaac" />
+<img width="1515" height="1059" alt="EditorAttributes04" src="https://github.com/user-attachments/assets/c0af8fa9-c424-47b8-84ea-bc2c5748cc94" />
+<img width="1515" height="1059" alt="EditorAttributes05" src="https://github.com/user-attachments/assets/c7db0966-8897-407c-8f97-aaf71304fa09" />
+<img width="1515" height="874" alt="EditorAttributes06" src="https://github.com/user-attachments/assets/7394a34d-ba4b-445c-ac69-35cec82e5adf" />
+<img width="1515" height="1059" alt="EditorAttributes09" src="https://github.com/user-attachments/assets/0bb3f7d1-568e-4225-ae7c-90a15de9eeef" />
+<img width="1515" height="693" alt="EditorAttributes07" src="https://github.com/user-attachments/assets/5634cd74-3e9e-455f-91f0-c1563f9ffa69" />
+<img width="1368" height="1304" alt="EditorAttributes02" src="https://github.com/user-attachments/assets/6f17a097-f8e7-4de0-be42-cec604813dc1" />
+<img width="1200" height="924" alt="ComplexInspector" src="https://github.com/user-attachments/assets/f20e3018-0d89-472a-8a0b-5b1f15bae130" />
