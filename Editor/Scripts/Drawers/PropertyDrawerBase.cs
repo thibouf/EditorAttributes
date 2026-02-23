@@ -48,6 +48,14 @@ namespace EditorAttributes.Editor
         protected virtual void PasteValue(VisualElement element, SerializedProperty property, string clipboardValue) => SetPropertyValueFromString(clipboardValue, property);
 
         /// <summary>
+        /// Checks to see if the property type is supported by the drawer
+        /// </summary>
+        /// <remarks>This always returns true by default, override it to add custom type checks</remarks>
+        /// <param name="property">The serialized property to check</param>
+        /// <returns>True if the type is supported, false otherwise</returns>
+        protected virtual bool IsSupportedPropertyType(SerializedProperty property) => true;
+
+        /// <summary>
         /// Creates a properly binded property field from a serialized property
         /// </summary>
         /// <param name="property">The serialized property</param>
@@ -444,6 +452,7 @@ namespace EditorAttributes.Editor
         {
             visualElement.AddToClassList(HelpBox.ussClassName);
 
+            visualElement.style.paddingRight = 5f;
             visualElement.style.alignItems = Align.Stretch;
             visualElement.style.flexDirection = FlexDirection.Column;
             visualElement.style.backgroundColor = EditorExtension.GLOBAL_COLOR != EditorExtension.DEFAULT_GLOBAL_COLOR ? EditorExtension.GLOBAL_COLOR / 2f : new Color(63f / 255f, 63f / 255f, 63f / 255f);
@@ -1104,7 +1113,6 @@ namespace EditorAttributes.Editor
         /// <param name="texture">The texture to get the size from</param>
         /// <returns>The width and height of the texture as a Vector2</returns>
         public static Vector2 GetTextureSize(Texture2D texture) => new(texture.width, texture.height);
-
         #endregion
     }
 }

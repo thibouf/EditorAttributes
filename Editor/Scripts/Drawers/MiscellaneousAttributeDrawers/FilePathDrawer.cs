@@ -11,7 +11,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType != SerializedPropertyType.String)
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The FilePath Attribute can only be attached to a string", HelpBoxMessageType.Error);
 
             var filePathAttribute = attribute as FilePathAttribute;
@@ -53,5 +53,7 @@ namespace EditorAttributes.Editor
 
             return root;
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.String;
     }
 }

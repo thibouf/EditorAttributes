@@ -11,7 +11,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType != SerializedPropertyType.String)
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The TagDropdown Attribute can only be attached to string fields", HelpBoxMessageType.Error);
 
             TagField tagField = new(property.displayName, DoesStringValueContainTag(property.stringValue) ? property.stringValue : "Untagged")
@@ -60,6 +60,8 @@ namespace EditorAttributes.Editor
                 Debug.LogWarning($"Could not paste value <b>{clipboardValue}</b> since is not availiable as an option in the dropdown");
             }
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.String;
 
         private bool DoesStringValueContainTag(string stringValue)
         {

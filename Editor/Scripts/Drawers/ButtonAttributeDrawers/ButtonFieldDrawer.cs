@@ -43,7 +43,7 @@ namespace EditorAttributes.Editor
 
             if (buttonFieldAttribute.IsRepetable)
             {
-                RepeatButton repeatButton = new(() => InvokeFunctionOnAllTargets(property.serializedObject.targetObjects, function.Name), buttonFieldAttribute.PressDelay, buttonFieldAttribute.RepetitionInterval)
+                RepeatButton repeatButton = new(() => InvokeFunctionOnAllTargets(property.serializedObject.targetObjects, function.Name, makeTargetsDirty: buttonFieldAttribute.MakeDirty), buttonFieldAttribute.PressDelay, buttonFieldAttribute.RepetitionInterval)
                 {
                     text = buttonLabel,
                     tooltip = property.tooltip,
@@ -56,7 +56,7 @@ namespace EditorAttributes.Editor
             }
             else
             {
-                return new Button(() => InvokeFunctionOnAllTargets(property.serializedObject.targetObjects, function.Name))
+                return new Button(() => InvokeFunctionOnAllTargets(property.serializedObject.targetObjects, function.Name, makeTargetsDirty: buttonFieldAttribute.MakeDirty))
                 {
                     text = buttonLabel,
                     tooltip = property.tooltip,

@@ -8,7 +8,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType is not (SerializedPropertyType.Integer or SerializedPropertyType.Float))
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The ProgressBar Attribute can only be attached to an int or float", HelpBoxMessageType.Error);
 
             var progressBarAttribute = attribute as ProgressBarAttribute;
@@ -37,6 +37,8 @@ namespace EditorAttributes.Editor
 
             return progressBar;
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType is SerializedPropertyType.Integer or SerializedPropertyType.Float;
 
         private float GetPropertyValue(SerializedProperty property)
         {

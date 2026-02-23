@@ -43,7 +43,7 @@ namespace EditorAttributes
         /// Attribute to add a button in the inspector
         /// </summary>
         /// <param name="isRepetable">Makes the button repeat logic on hold</param>
-        /// <param name="pressDelay">How many milliseconds to wait before the logic is executed on hold</param>
+        /// <param name="pressDelay">How many milliseconds to wait before the logic is repeated</param>
         /// <param name="repetitionInterval">The interval in milliseconds the logic will repeat</param>
         /// <param name="buttonLabel">The label displayed on the button</param>
         /// <param name="buttonHeight">The height of the button in pixels</param>
@@ -83,7 +83,7 @@ namespace EditorAttributes
         /// <param name="conditionName">The name of the condition to evaluate</param>
         /// <param name="conditionResult">What happens to the button when the condition evaluates to true</param>
         /// <param name="negate">Negate the evaluated condition</param>
-        /// <param name="pressDelay">How many milliseconds to wait before the logic is executed on hold</param>
+        /// <param name="pressDelay">How many milliseconds to wait before the logic repeated</param>
         /// <param name="repetitionInterval">The interval in milliseconds the logic will repeat</param>
         /// <param name="buttonLabel">The label displayed on the button</param>
         /// <param name="buttonHeight">The height of the button in pixels</param>
@@ -119,7 +119,7 @@ namespace EditorAttributes
         /// <param name="enumValue">The value of the enum condition</param>
         /// <param name="conditionResult">What happens to the button when the condition evaluates to true</param>
         /// <param name="negate">Negate the evaluated condition</param>
-        /// <param name="pressDelay" > How many milliseconds to wait before the logic is executed on hold</param>
+        /// <param name="pressDelay" > How many milliseconds to wait before the logic is repeated</param>
         /// <param name="repetitionInterval">The interval in milliseconds the logic will repeat</param>
         /// <param name="buttonLabel">The label displayed on the button</param>
         /// <param name="buttonHeight">The height of the button in pixels</param>

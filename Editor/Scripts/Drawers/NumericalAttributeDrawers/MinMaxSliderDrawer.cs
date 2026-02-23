@@ -10,7 +10,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType is not (SerializedPropertyType.Vector2 or SerializedPropertyType.Vector2Int))
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("MinMaxSlider Attribute can only be attached to a <b>Vector2</b> or <b>Vector2Int</b>", HelpBoxMessageType.Warning);
 
             var minMaxSliderAttribute = attribute as MinMaxSliderAttribute;
@@ -147,6 +147,8 @@ namespace EditorAttributes.Editor
             base.PasteValue(element, property, clipboardValue);
             minMaxSlider.value = property.propertyType == SerializedPropertyType.Vector2 ? property.vector2Value : property.vector2IntValue;
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType is SerializedPropertyType.Vector2 or SerializedPropertyType.Vector2Int;
 
         private void ApplyPropertyValues(SerializedProperty property, bool isIntVector, float minValue, float maxValue)
         {

@@ -10,7 +10,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType != SerializedPropertyType.ObjectReference)
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The PropertyDropdown Attribute can only be attached on to <b>UnityEngine.Object</b> types", HelpBoxMessageType.Error);
 
             VisualElement root = new();
@@ -32,6 +32,8 @@ namespace EditorAttributes.Editor
 
             return root;
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.ObjectReference;
 
         private void InitializeFoldoutDrawer(VisualElement root, SerializedProperty property)
         {

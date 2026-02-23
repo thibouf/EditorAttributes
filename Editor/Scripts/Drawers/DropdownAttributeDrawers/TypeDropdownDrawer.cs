@@ -10,7 +10,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType != SerializedPropertyType.String)
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The TypeDropdown Attribute can only be attached to string fields", HelpBoxMessageType.Error);
 
             List<string> dropdownValues = GetTypeList();
@@ -70,18 +70,20 @@ namespace EditorAttributes.Editor
             }
         }
 
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.String;
+
         private List<string> GetTypeList()
         {
             var typeDropdownAttribute = attribute as TypeDropdownAttribute;
 
             List<string> typeNameList = new();
 
-            TypeCache.TypeCollection typeCollection = (typeDropdownAttribute.Type, typeDropdownAttribute.AssemblyName) switch
+            TypeCache.TypeCollection typeCollection = (typeDropdownAttribute.BaseTypeFilter, typeDropdownAttribute.AssemblyName) switch
             {
                 (null, "") => TypeCache.GetTypesDerivedFrom<object>(),
                 (null, _) => TypeCache.GetTypesDerivedFrom<object>(typeDropdownAttribute.AssemblyName),
-                (_, "") => TypeCache.GetTypesDerivedFrom(typeDropdownAttribute.Type),
-                (_, _) => TypeCache.GetTypesDerivedFrom(typeDropdownAttribute.Type, typeDropdownAttribute.AssemblyName),
+                (_, "") => TypeCache.GetTypesDerivedFrom(typeDropdownAttribute.BaseTypeFilter),
+                (_, _) => TypeCache.GetTypesDerivedFrom(typeDropdownAttribute.BaseTypeFilter, typeDropdownAttribute.AssemblyName),
             };
 
             foreach (var item in typeCollection)

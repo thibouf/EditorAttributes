@@ -39,7 +39,7 @@ namespace EditorAttributes
         /// </summary>
         /// <param name="functionName">The name of the function the button activates</param>
         /// <param name="isRepetable">Makes the button repeat logic on hold</param>
-        /// <param name="pressDelay">How many milliseconds to wait before the logic is executed on hold</param>
+        /// <param name="pressDelay">How many milliseconds to wait before the logic is repeated</param>
         /// <param name="repetitionInterval">The interval in milliseconds the logic will repeat</param>
         /// <param name="buttonLabel">The label displayed on the button</param>
         /// <param name="buttonWidth">The width of the button in pixels</param>

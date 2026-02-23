@@ -4,6 +4,7 @@ using System.Reflection;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using EditorAttributes.Editor.Utility;
+using System;
 
 namespace EditorAttributes.Editor
 {
@@ -55,7 +56,10 @@ namespace EditorAttributes.Editor
 
                 groupElement.style.flexGrow = 1f;
                 groupElement.style.flexBasis = 0.1f;
-                groupBox.style.paddingLeft = 20f;
+
+                // Don't add margins to the last property in the group
+                if (Array.IndexOf(horizontalGroup.FieldsToGroup, variableName) != horizontalGroup.FieldsToGroup.Length - 1)
+                    groupBox.style.marginRight = 10f;
 
                 if (hideLabelAttribute == null)
                 {

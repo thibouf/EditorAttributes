@@ -11,7 +11,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType is not (SerializedPropertyType.String or SerializedPropertyType.Integer))
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The SceneDropdown Attribute can only be attached to a string or int", HelpBoxMessageType.Error);
 
             HelpBox errorBox = new();
@@ -45,6 +45,8 @@ namespace EditorAttributes.Editor
                 Debug.LogWarning($"Could not paste value <b>{clipboardValue}</b> since is not availiable as an option in the dropdown");
             }
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType is SerializedPropertyType.String or SerializedPropertyType.Integer;
 
         protected override string SetDropdownDefaultValue(List<string> collectionValues, SerializedProperty property)
         {

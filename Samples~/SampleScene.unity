@@ -1765,6 +1765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allVisibleTypes: System.Enum, mscorlib
   filteredTypes: UnityEngine.Camera, UnityEngine.CoreModule
+  inheritedTypes: UnityEngine.MeshRenderer, UnityEngine.CoreModule
 --- !u!1 &1178147971
 GameObject:
   m_ObjectHideFlags: 0

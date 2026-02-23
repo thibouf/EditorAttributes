@@ -12,7 +12,9 @@ using Object = UnityEngine.Object;
 
 namespace EditorAttributes.Editor
 {
+#if !DISABLE_EDITOR_EXTENTION
     [CanEditMultipleObjects, CustomEditor(typeof(Object), true)]
+#endif
     public class EditorExtension : UnityEditor.Editor
     {
         public static readonly Color DEFAULT_GLOBAL_COLOR = new(0.8f, 0.8f, 0.8f, 1.0f);

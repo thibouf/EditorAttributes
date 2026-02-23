@@ -12,7 +12,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType != SerializedPropertyType.Integer)
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The SortingLayerDropdown Attribute can only be attached to int fields", HelpBoxMessageType.Error);
 
             MaskField maskField = new(property.displayName, GetSortingLayerNames(), property.intValue)
@@ -50,6 +50,8 @@ namespace EditorAttributes.Editor
                 // Ignore, error will already be thrown by the base function
             }
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.Integer;
 
         private List<string> GetSortingLayerNames()
         {

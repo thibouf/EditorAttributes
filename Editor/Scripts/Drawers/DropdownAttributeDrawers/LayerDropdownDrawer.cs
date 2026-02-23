@@ -12,7 +12,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType != SerializedPropertyType.String)
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The LayerDropdown Attribute can only be attached to a string", HelpBoxMessageType.Error);
 
             List<string> layerNames = InternalEditorUtility.layers.ToList();
@@ -43,5 +43,7 @@ namespace EditorAttributes.Editor
                 Debug.LogWarning($"Could not paste value <b>{clipboardValue}</b> since is not availiable as an option in the dropdown");
             }
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.String;
     }
 }

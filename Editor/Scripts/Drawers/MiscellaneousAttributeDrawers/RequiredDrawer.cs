@@ -15,7 +15,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType != SerializedPropertyType.ObjectReference)
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The attached field must derive from <b>UnityEngine.Object</b>", HelpBoxMessageType.Error);
 
             var requiredAttribute = attribute as RequiredAttribute;
@@ -44,6 +44,8 @@ namespace EditorAttributes.Editor
 
             return root;
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.ObjectReference;
 
         private void FixNullReference(SerializedProperty property, RequiredAttribute requiredAttribute)
         {

@@ -14,7 +14,7 @@ namespace EditorAttributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            if (property.propertyType != SerializedPropertyType.String)
+            if (!IsSupportedPropertyType(property))
                 return new HelpBox("The AnimatorParamDropdown Attribute can only be attached to string fields", HelpBoxMessageType.Error);
 
             var animatorParamAttribute = attribute as AnimatorParamDropdownAttribute;
@@ -49,6 +49,8 @@ namespace EditorAttributes.Editor
                 Debug.LogWarning($"Could not paste value <b>{clipboardValue}</b> since is not availiable as an option in the dropdown");
             }
         }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.String;
 
         private List<string> GetAnimatorParameterList(AnimatorParamDropdownAttribute animatorParamAttribute, SerializedProperty property, HelpBox errorBox)
         {

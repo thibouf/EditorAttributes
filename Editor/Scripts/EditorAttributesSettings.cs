@@ -1,15 +1,20 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEditor.Build;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 using System.Collections.Generic;
 using FilePath = UnityEditor.FilePathAttribute;
-using UnityEditor.UIElements;
+using System.Linq;
 
 namespace EditorAttributes.Editor
 {
     [@FilePath("ProjectSettings/EditorAttributes/EditorAttributesSettings.asset", FilePath.Location.ProjectFolder)]
     internal class EditorAttributesSettings : ScriptableSingleton<EditorAttributesSettings>
     {
+        [Tooltip("Disables the drawing of the editor by the editor extension script, usefull if you want to override the base UnityEngine.Object yourself.\nNote that some attributes like Button, PropertyOrder and ShowInInspector will stop working.")]
+        [SerializeField] internal bool disableEditorExtension;
+
         [Tooltip("Disables automatic validation when building the project")]
         [SerializeField] internal bool disableBuildValidation;
 
@@ -131,6 +136,24 @@ namespace EditorAttributes.Editor
             InspectorElement inspectorElement = new(serializedObject);
 
             inspectorElement.Q<ObjectField>("unity-input-m_Script").parent.RemoveFromHierarchy(); // Remove the auto-generated script field
+
+            inspectorElement.Q<Toggle>("unity-input-disableEditorExtension").RegisterValueChangedCallback((changeEvent) =>
+            {
+                const string disableEditorExtensionDefine = "DISABLE_EDITOR_EXTENTION";
+
+                if (changeEvent.newValue) // Enabled
+                {
+                    PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, disableEditorExtensionDefine);
+                }
+                else // Disabled
+                {
+                    PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.Standalone, out string[] defines);
+
+                    defines = defines.Where((define) => define != disableEditorExtensionDefine).ToArray();
+
+                    PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, defines);
+                }
+            });
 
             Button clearParamsButton = new(() => ButtonDrawer.ClearAllParamsData())
             {
