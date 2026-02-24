@@ -40,6 +40,7 @@ namespace EditorAttributes
 		public string ValidationMessage { get; private set; }
 		public string ConditionName { get; private set; }
 		public bool BuildKiller { get; private set; }
+		public bool ApplyToCollection { get; private set; } = true;
 
 		public MessageMode Severety { get; private set; }
 
@@ -56,11 +57,14 @@ namespace EditorAttributes
 		/// <param name="conditionName">The name of the condition to evaluate</param>
 		/// <param name="severety">The severety of the failed validation</param>
 		/// <param name="buildKiller">Throws an error during build time and cancels it if validation fails</param>
-		public ValidateAttribute(string validationMessage, string conditionName, MessageMode severety = MessageMode.Error, bool buildKiller = false) : this(conditionName)
-		{
-			ValidationMessage = validationMessage;
+		public ValidateAttribute(string validationMessage, string conditionName, MessageMode severety = MessageMode.Error, bool buildKiller = false, bool applyToCollection = true) : base(applyToCollection)
+        {
+			ConditionName = conditionName;
+            ValidationMessage = validationMessage;
 			BuildKiller = buildKiller;
 			Severety = severety;
-		}
+            ApplyToCollection = applyToCollection;
+
+        }
 	}
 }

@@ -404,6 +404,30 @@ namespace EditorAttributes.Editor.Utility
         }
 
         /// <summary>
+        /// Get the index of the element in a collection if its part of a collection
+        /// </summary>
+        /// <param name="property">The serialized property</param>
+        /// <returns>The index of the property if in an collection. Else -1</returns>
+        public static int GetCollectionElementIndex(this SerializedProperty property)
+        {
+            string path = property.propertyPath;
+
+            int start = path.LastIndexOf('[');
+            int end = path.LastIndexOf(']');
+
+            if (start != -1 && end != -1)
+            {
+                string indexStr = path.Substring(start + 1, end - start - 1);
+                if (int.TryParse(indexStr, out int index))
+                {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
+
+        /// <summary>
         /// Gets the value of a member
         /// </summary>
         /// <param name="memberInfo">The member to get the value from</param>
@@ -428,7 +452,20 @@ namespace EditorAttributes.Editor.Utility
                 }
                 else if (memberInfo is MethodInfo methodInfo)
                 {
-                    return methodInfo.Invoke(targetObject, null);
+                    try
+                    {
+                        return methodInfo.Invoke(targetObject, null);
+                    }catch(TargetParameterCountException )
+                    {
+                        int index = GetCollectionElementIndex(property);
+                        if(index >= 0)
+                        {
+                            //We are in an collection, try call the method with the collection item index
+                            object[] parameters = new object[] { index };
+                            return methodInfo.Invoke(targetObject, parameters);
+                        }
+                        
+                    }
                 }
             }
             catch (Exception exception)
