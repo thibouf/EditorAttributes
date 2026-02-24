@@ -47,7 +47,7 @@ namespace EditorAttributes
 		/// Attribute to create custom validation
 		/// </summary>
 		/// <param name="conditionName">The name of the condition to evaluate</param>
-		public ValidateAttribute(string conditionName) => ConditionName = conditionName;
+		public ValidateAttribute(string conditionName) : base(true) => ConditionName = conditionName;
 
 		/// <summary>
 		/// Attribute to create custom validation
