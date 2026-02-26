@@ -431,7 +431,8 @@ namespace EditorAttributes.Editor.Utility
                     try
                     {
                         return methodInfo.Invoke(targetObject, null);
-                    }catch(TargetParameterCountException )
+                    }
+                    catch(TargetParameterCountException)
                     {
                         int index = PropertyDrawerBase.GetCollectionElementIndex(property);
                         if(index >= 0)
@@ -440,7 +441,6 @@ namespace EditorAttributes.Editor.Utility
                             object[] parameters = new object[] { index };
                             return methodInfo.Invoke(targetObject, parameters);
                         }
-                        
                     }
                 }
             }
