@@ -1092,28 +1092,6 @@ namespace EditorAttributes.Editor
             || type == typeof(LayerMask) || type == typeof(Rect) || type == typeof(RectInt) || type == typeof(Bounds) || type == typeof(BoundsInt) || type == typeof(Gradient) || type == typeof(AnimationCurve);
         }
 
-        #region NON_GUI_RELATED_UTILITY_FUNCITONS
-
-        /// <summary>
-        /// A short handy version of Debug.Log
-        /// </summary>
-        /// <param name="message">The message to print</param>
-        protected static void Print(object message) => Debug.Log(message);
-
-        /// <summary>
-        /// Checks if a collection is null or has no members
-        /// </summary>
-        /// <param name="collection">The collection to check</param>
-        /// <returns>False is the collection is null or has no members, true otherwise</returns>
-        public static bool IsCollectionValid(ICollection collection) => collection != null && collection.Count != 0;
-
-        /// <summary>
-        /// Gets the size of a 2D texture
-        /// </summary>
-        /// <param name="texture">The texture to get the size from</param>
-        /// <returns>The width and height of the texture as a Vector2</returns>
-        public static Vector2 GetTextureSize(Texture2D texture) => new(texture.width, texture.height);
-
         /// <summary>
         /// Get the index of the element in a collection if its part of a collection
         /// </summary>
@@ -1137,6 +1115,28 @@ namespace EditorAttributes.Editor
 
             return -1;
         }
+
+        #region NON_GUI_RELATED_UTILITY_FUNCITONS
+
+        /// <summary>
+        /// A short handy version of Debug.Log
+        /// </summary>
+        /// <param name="message">The message to print</param>
+        protected static void Print(object message) => Debug.Log(message);
+
+        /// <summary>
+        /// Checks if a collection is null or has no members
+        /// </summary>
+        /// <param name="collection">The collection to check</param>
+        /// <returns>False is the collection is null or has no members, true otherwise</returns>
+        public static bool IsCollectionValid(ICollection collection) => collection != null && collection.Count != 0;
+
+        /// <summary>
+        /// Gets the size of a 2D texture
+        /// </summary>
+        /// <param name="texture">The texture to get the size from</param>
+        /// <returns>The width and height of the texture as a Vector2</returns>
+        public static Vector2 GetTextureSize(Texture2D texture) => new(texture.width, texture.height);
         #endregion
     }
 }
