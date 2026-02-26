@@ -40,7 +40,6 @@ namespace EditorAttributes
 		public string ValidationMessage { get; private set; }
 		public string ConditionName { get; private set; }
 		public bool BuildKiller { get; private set; }
-		public bool ApplyToCollection { get; private set; } = true;
 
 		public MessageMode Severety { get; private set; }
 
@@ -50,21 +49,23 @@ namespace EditorAttributes
 		/// <param name="conditionName">The name of the condition to evaluate</param>
 		public ValidateAttribute(string conditionName) : base(true) => ConditionName = conditionName;
 
-		/// <summary>
-		/// Attribute to create custom validation
-		/// </summary>
-		/// <param name="validationMessage">The message to display in the console when validation fails</param>
-		/// <param name="conditionName">The name of the condition to evaluate</param>
-		/// <param name="severety">The severety of the failed validation</param>
-		/// <param name="buildKiller">Throws an error during build time and cancels it if validation fails</param>
-		public ValidateAttribute(string validationMessage, string conditionName, MessageMode severety = MessageMode.Error, bool buildKiller = false, bool applyToCollection = true) : base(applyToCollection)
+        /// <summary>
+        /// Attribute to create custom validation
+        /// </summary>
+        /// <param name="validationMessage">The message to display in the console when validation fails</param>
+        /// <param name="conditionName">The name of the condition to evaluate</param>
+        /// <param name="severety">The severety of the failed validation</param>
+        /// <param name="buildKiller">Throws an error during build time and cancels it if validation fails</param>
+        /// <param name="applyToCollection">
+		/// If true : Validate the whole collection only once and display message below.
+		/// If false : Validate each individual items of the collection and display message on each. conditionName method can have one int parameter with the item index inside the collection. Ex : bool condition(int itemIndex)
+		/// </param>
+        public ValidateAttribute(string validationMessage, string conditionName, MessageMode severety = MessageMode.Error, bool buildKiller = false, bool applyToCollection = true) : base(applyToCollection)
         {
 			ConditionName = conditionName;
             ValidationMessage = validationMessage;
 			BuildKiller = buildKiller;
 			Severety = severety;
-            ApplyToCollection = applyToCollection;
-
         }
 	}
 }
