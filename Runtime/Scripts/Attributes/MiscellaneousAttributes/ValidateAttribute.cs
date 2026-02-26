@@ -56,10 +56,7 @@ namespace EditorAttributes
         /// <param name="conditionName">The name of the condition to evaluate</param>
         /// <param name="severety">The severety of the failed validation</param>
         /// <param name="buildKiller">Throws an error during build time and cancels it if validation fails</param>
-        /// <param name="applyToCollection">
-		/// If true : Validate the whole collection only once and display message below.
-		/// If false : Validate each individual items of the collection and display message on each. conditionName method can have one int parameter with the item index inside the collection. Ex : bool condition(int itemIndex)
-		/// </param>
+        /// <param name="applyToCollection">Validate the whole collection instead of individual items</param>
         public ValidateAttribute(string validationMessage, string conditionName, MessageMode severety = MessageMode.Error, bool buildKiller = false, bool applyToCollection = true) : base(applyToCollection)
         {
 			ConditionName = conditionName;
