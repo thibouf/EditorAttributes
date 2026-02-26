@@ -1113,6 +1113,30 @@ namespace EditorAttributes.Editor
         /// <param name="texture">The texture to get the size from</param>
         /// <returns>The width and height of the texture as a Vector2</returns>
         public static Vector2 GetTextureSize(Texture2D texture) => new(texture.width, texture.height);
+
+        /// <summary>
+        /// Get the index of the element in a collection if its part of a collection
+        /// </summary>
+        /// <param name="property">The serialized property</param>
+        /// <returns>The index of the property if in an collection. Else -1</returns>
+        public static int GetCollectionElementIndex(SerializedProperty property)
+        {
+            string path = property.propertyPath;
+
+            int start = path.LastIndexOf('[');
+            int end = path.LastIndexOf(']');
+
+            if (start != -1 && end != -1)
+            {
+                string indexStr = path.Substring(start + 1, end - start - 1);
+                if (int.TryParse(indexStr, out int index))
+                {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
         #endregion
     }
 }
